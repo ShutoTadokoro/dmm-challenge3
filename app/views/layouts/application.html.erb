@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookers2</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header class="sticky-top">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <a class="navbar-brand" href="/">Bookers</a>
+            <div class="collapse navbar-collapse">
+              <ul class="ml-auto navbar-nav">
+                <% if user_signed_in? %>
+                  <li class="nav-link">
+                    <%= link_to user_path(current_user.id) , class:"text-light" do %>
+                    <i class="fas fa-home" aria-hidden="true"></i>
+                    <span>Home</span>
+                    <% end %>
+                  </li>
+                  <li class="nav-link">
+                    <%= link_to users_path , class:"text-light" do %>
+                    <i class="fas fa-users" aria-hidden="true"></i>
+                    <span>Users</span>
+                    <% end %>
+                  </li>
+                  <li class="nav-link">
+                    <%= link_to books_path, class:"text-light" do %>
+                    <i class="fas fa-book-open" aria-hidden="true"></i>
+                    <span>Books</span>
+                    <% end %>
+                  </li>
+                  <li class="nav-link">
+                    <%= link_to destroy_user_session_path, method: :delete , class:"text-light" do %>
+                    <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
+                    <span>Log out</span>
+                    <% end %>
+                  </li>
+                <% else %>
+                  <li class="nav-link">
+                    <%= link_to root_path , class:"text-light" do %>
+                    <i class="fas fa-home" aria-hidden="true"></i>
+                    <span>Home</span>
+                    <% end %>
+                  </li>
+                  <li class="nav-link">
+                    <%= link_to about_path , class:"text-light" do %>
+                    <i class="fas fa-link" aria-hidden="true"></i>
+                    <span>About</span>
+                    <% end %>
+                  </li>
+                  <li class="nav-link">
+                    <%= link_to new_user_registration_path , class:"text-light" do %>
+                    <i class="fas fa-user-plus" aria-hidden="true"></i>
+                    <span>Sign up</span>
+                    <% end %>
+                  </li>
+                  <li class="nav-link">
+                    <%= link_to new_user_session_path , class:"text-light" do %>
+                    <i class="fas fa-sign-in-alt" aria-hidden="true"></i>
+                    <span>Log in</span>
+                    <% end %>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+        </div>
+      </nav>
+    </header>
+    <%= render 'layouts/notification' %>
+    <%= yield %>
+  </body>
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="mx-auto mt-5 mb-5">
+          CopyRight Infratop.inc
+        </div>
+      </div>
+    </div>
+  </footer>
+</html>
